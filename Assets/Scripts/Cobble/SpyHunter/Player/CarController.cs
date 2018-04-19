@@ -31,7 +31,7 @@ namespace Cobble.SpyHunter.Player {
                 _rigidbody.AddForce(transform.forward * MovementSettings.MovementSpeed, ForceMode.VelocityChange);
             }
 
-            if (Math.Abs(input.x) > float.Epsilon)
+            if (Math.Abs(input.x) > float.Epsilon && MovementSettings.CurrentTargetSpeed > 1f)
                 _rigidbody.MovePosition(_rigidbody.position + transform.right * input.x * MovementSettings.HorizontalSpeed);
 //				_rigidbody.AddForce(transform.right * input.x * MovementSettings.HorizontalSpeed, ForceMode.Force);
         }
