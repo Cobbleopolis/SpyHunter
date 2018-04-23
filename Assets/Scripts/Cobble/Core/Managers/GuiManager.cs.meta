@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: b554b36f017ba654c956d5e0c9e021c4
+timeCreated: 1519231464
+licenseType: Free
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - MessageBoxPrefab: {fileID: 1455270197296684, guid: 9cde87ac362f1a44f8653e32f52bc1ff,
+      type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
