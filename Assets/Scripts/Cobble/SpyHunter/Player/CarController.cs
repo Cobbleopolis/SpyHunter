@@ -17,11 +17,15 @@ namespace Cobble.SpyHunter.Player {
 
         public CarMovementSettings MovementSettings = new CarMovementSettings();
 
+        public GameObject[] AccelerationObjects;
+
         [SerializeField] private Rigidbody _rigidbody;
 
         private void Start() {
             if (!_rigidbody)
                 _rigidbody = GetComponentInChildren<Rigidbody>();
+            foreach(var obj in AccelerationObjects)
+                obj.SetActive(false);
         }
 
         private void FixedUpdate() {
@@ -33,7 +37,10 @@ namespace Cobble.SpyHunter.Player {
 
             if (Math.Abs(input.x) > float.Epsilon && MovementSettings.CurrentTargetSpeed > 1f)
                 _rigidbody.MovePosition(_rigidbody.position + transform.right * input.x * MovementSettings.HorizontalSpeed);
-//				_rigidbody.AddForce(transform.right * input.x * MovementSettings.HorizontalSpeed, ForceMode.Force);
+            _rigidbody.AddForce(transform.forward * input.y * MovementSettings.MovementSpeed, ForceMode.Force);
+            var isAcc = input.y > float.Epsilon && MovementSettings.CurrentTargetSpeed >= MovementSettings.MaxSpeed / 2f;
+            foreach(var obj in AccelerationObjects)
+                obj.SetActive(isAcc);
         }
 
         private Vector2 GetInput() {
