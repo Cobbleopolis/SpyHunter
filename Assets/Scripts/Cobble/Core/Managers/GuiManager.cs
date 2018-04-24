@@ -6,6 +6,10 @@ namespace Cobble.Core.Managers {
     [DisallowMultipleComponent]
     [RequireComponent(typeof(GameManager))]
     public class GuiManager : MonoBehaviour {
+
+        public GuiScreen CurrentGuiScreen {
+            get { return _guiHistory.Count > 0 ? _guiHistory.Peek() : GuiScreen.None; }
+        }
         private readonly Dictionary<GuiScreen, GuiBase> _guiScreens = new Dictionary<GuiScreen, GuiBase>();
 
         private readonly Stack<GuiScreen> _guiHistory = new Stack<GuiScreen>();
@@ -29,7 +33,7 @@ namespace Cobble.Core.Managers {
         }
 
         public void Open(GuiScreen guiScreen) {
-            if (GetCurrentGuiScreen() == guiScreen) return;
+            if (CurrentGuiScreen == guiScreen) return;
             if (_guiHistory.Count > 0)
                 GetGuiBase(_guiHistory.Peek()).OnHide();
             if (guiScreen == GuiScreen.None) {
@@ -53,7 +57,7 @@ namespace Cobble.Core.Managers {
                 GetGuiBase(_guiHistory.Pop()).OnHide();
             if (_guiHistory.Count > 0)
                 GetGuiBase(_guiHistory.Peek()).OnShow();
-            if (GetCurrentGuiScreen() != GuiScreen.None) return;
+            if (CurrentGuiScreen != GuiScreen.None) return;
             GameManager.UnpauseGame();
             TrapMouse();
         }
@@ -63,10 +67,6 @@ namespace Cobble.Core.Managers {
                 GetGuiBase(_guiHistory.Pop()).OnHide();
             _guiHistory.Clear();
             Open(GuiScreen.None);
-        }
-
-        public GuiScreen GetCurrentGuiScreen() {
-            return _guiHistory.Count > 0 ? _guiHistory.Peek() : GuiScreen.None;
         }
 
         public static void FreeMouse() {
