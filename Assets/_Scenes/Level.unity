@@ -1340,7 +1340,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GuiScreen: 1
   PausesGame: 1
-  FreeMouse: 1
+  FreeMouse: 0
   DefaultSelectable: {fileID: 744496611}
 --- !u!114 &2032737255
 MonoBehaviour:
