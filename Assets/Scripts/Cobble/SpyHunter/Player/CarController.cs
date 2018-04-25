@@ -19,7 +19,7 @@ namespace Cobble.SpyHunter.Player {
 
         public CarMovementSettings MovementSettings = new CarMovementSettings();
 
-        public GameObject[] AccelerationObjects;
+        public TrailRenderer AccelerationTrail;
 
         [SerializeField] private Rigidbody _rigidbody;
         
@@ -30,8 +30,10 @@ namespace Cobble.SpyHunter.Player {
                 _rigidbody = GetComponentInChildren<Rigidbody>();
             if (!_guiManager)
                 _guiManager = FindObjectOfType<GuiManager>();
-            foreach (var obj in AccelerationObjects)
-                obj.SetActive(false);
+            if (!AccelerationTrail)
+                AccelerationTrail = GetComponentInChildren<TrailRenderer>();
+            if(AccelerationTrail)
+                AccelerationTrail.enabled = false;
         }
 
         private void Update() {
@@ -53,10 +55,9 @@ namespace Cobble.SpyHunter.Player {
                 _rigidbody.MovePosition(_rigidbody.position +
                                         transform.right * input.x * MovementSettings.HorizontalSpeed);
             _rigidbody.AddForce(transform.forward * input.y * MovementSettings.MovementSpeed, ForceMode.Force);
-            var isAcc = input.y > float.Epsilon &&
-                        MovementSettings.CurrentTargetSpeed >= MovementSettings.MaxSpeed / 2f;
-            foreach (var obj in AccelerationObjects)
-                obj.SetActive(isAcc);
+            if(AccelerationTrail)
+                AccelerationTrail.enabled = input.y > float.Epsilon &&
+                                            MovementSettings.CurrentTargetSpeed >= MovementSettings.MaxSpeed / 2f;
         }
 
         private Vector2 GetInput() {
