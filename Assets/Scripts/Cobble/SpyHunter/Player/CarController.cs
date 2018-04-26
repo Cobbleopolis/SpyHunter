@@ -22,7 +22,7 @@ namespace Cobble.SpyHunter.Player {
         public TrailRenderer AccelerationTrail;
 
         [SerializeField] private Rigidbody _rigidbody;
-        
+
         [SerializeField] private GuiManager _guiManager;
 
         private void Start() {
@@ -32,14 +32,15 @@ namespace Cobble.SpyHunter.Player {
                 _guiManager = FindObjectOfType<GuiManager>();
             if (!AccelerationTrail)
                 AccelerationTrail = GetComponentInChildren<TrailRenderer>();
-            if(AccelerationTrail)
+            if (AccelerationTrail)
                 AccelerationTrail.enabled = false;
         }
 
         private void Update() {
             if (_guiManager.CurrentGuiScreen == GuiScreen.None && Input.GetButtonDown("Pause"))
                 _guiManager.Open(GuiScreen.PauseUi);
-            else if (Input.GetButtonDown("Cancel"))
+            else if (Input.GetButtonDown("Cancel") ||
+                     _guiManager.CurrentGuiScreen == GuiScreen.PauseUi && Input.GetButtonDown("Pause"))
                 _guiManager.GoBack();
         }
 
@@ -55,7 +56,7 @@ namespace Cobble.SpyHunter.Player {
                 _rigidbody.MovePosition(_rigidbody.position +
                                         transform.right * input.x * MovementSettings.HorizontalSpeed);
             _rigidbody.AddForce(transform.forward * input.y * MovementSettings.MovementSpeed, ForceMode.Force);
-            if(AccelerationTrail)
+            if (AccelerationTrail)
                 AccelerationTrail.enabled = input.y > float.Epsilon &&
                                             MovementSettings.CurrentTargetSpeed >= MovementSettings.MaxSpeed / 2f;
         }
