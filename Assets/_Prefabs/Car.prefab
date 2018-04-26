@@ -21,7 +21,8 @@ GameObject:
   - component: {fileID: 4873254176597932}
   - component: {fileID: 54214582986726448}
   - component: {fileID: 195000253469088132}
-  - component: {fileID: 114702467863811042}
+  - component: {fileID: 114096194776367474}
+  - component: {fileID: 114623809504562106}
   m_Layer: 0
   m_Name: Car
   m_TagString: Untagged
@@ -144,7 +145,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.0000005, y: 2.0000007, z: 1.4999998}
   m_Center: {x: 0.00000017881393, y: -0.00781238, z: -0.24999997}
---- !u!114 &114702467863811042
+--- !u!114 &114096194776367474
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -152,12 +153,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 1428408881700904}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d7b19e27e3204bf9b51a845202851497, type: 3}
+  m_Script: {fileID: 11500000, guid: 79b10bad77f54215bb6ce8b4f0e8a1c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IsAiActive: 0
   PathThreshold: 5
   PathDistance: 100
   MaxDistance: 1000
+--- !u!114 &114623809504562106
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1428408881700904}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf26ea3d427f45b991551cdb69c1ef2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CurrentState: {fileID: 0}
 --- !u!195 &195000253469088132
 NavMeshAgent:
   m_ObjectHideFlags: 1

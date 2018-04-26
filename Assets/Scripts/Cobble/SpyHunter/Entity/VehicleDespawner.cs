@@ -1,12 +1,12 @@
-﻿using Cobble.SpyHunter.AI;
+﻿using Cobble.SpyHunter.Ai.Actions;
 using UnityEngine;
 
 namespace Cobble.SpyHunter.Entity {
     public class VehicleDespawner : MonoBehaviour {
         private void OnTriggerEnter(Collider other) {
-            var carAi = other.gameObject.GetComponentInParent<CarAi>(); 
-            if (carAi)
-                Destroy(carAi.gameObject);
+            var drivingAiAction = other.gameObject.GetComponentInParent<DrivingAiAction>();
+            if (drivingAiAction)
+                Destroy(drivingAiAction.gameObject);
         }
     }
 }
