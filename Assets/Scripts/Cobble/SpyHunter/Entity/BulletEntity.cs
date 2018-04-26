@@ -13,5 +13,9 @@ namespace Cobble.SpyHunter.Entity {
         private void OnCollisionEnter(Collision other) {
             Destroy(gameObject);
         }
+
+        private void OnBecameInvisible() {
+            Destroy(gameObject);
+        }
     }
 }
