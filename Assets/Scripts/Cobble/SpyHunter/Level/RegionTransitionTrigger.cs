@@ -13,6 +13,8 @@ namespace Cobble.SpyHunter.Level {
 
         public Terrain TerrainObject;
 
+        public float SpawnRenableDelay = 15f;
+
         private static int _lastTextureIndex;
 
         private void Start() {
@@ -28,7 +30,7 @@ namespace Cobble.SpyHunter.Level {
             if (!RespawnOrigin || other.GetComponent<VehicleDespawner>()) return;
             TeleportObject(other);
             if (!other.transform.parent || !other.transform.parent.CompareTag("Player")) return;
-            ClearPlayerTrail(other);
+            HandlePlayerTeleportation(other);
             ChangeRandomTerrainTexture();
         }
 
@@ -42,14 +44,21 @@ namespace Cobble.SpyHunter.Level {
             var drivingAiAction = other.GetComponentInParent<DrivingAiAction>();
             if (drivingAiAction)
                 drivingAiAction.SetRandomDestination();
-            
-            
         }
 
-        private static void ClearPlayerTrail(Component other) {
+        private void HandlePlayerTeleportation(Component other) {
             var trail = other.transform.parent.GetComponentInChildren<TrailRenderer>();
             if (trail)
                 trail.Clear();
+            var vehicleSpawner = other.transform.parent.GetComponentInChildren<VehicleSpawner>();
+            if (!vehicleSpawner) return;
+            vehicleSpawner.enabled = false;
+            StartCoroutine(ReenableVehicleSpawner(vehicleSpawner));
+        }
+
+        private IEnumerator ReenableVehicleSpawner(Behaviour vehicleSpawner) {
+            yield return new WaitForSeconds(SpawnRenableDelay);
+            vehicleSpawner.enabled = true;
         }
 
         private void ChangeRandomTerrainTexture() {
