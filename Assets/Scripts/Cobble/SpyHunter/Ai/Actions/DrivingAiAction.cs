@@ -1,4 +1,5 @@
 ﻿using Cobble.Core.Lib.AI;
+using Cobble.SpyHunter.Player;
 using UnityEngine;
 using UnityEngine.AI;
 using Random = UnityEngine.Random;
@@ -10,11 +11,14 @@ namespace Cobble.SpyHunter.Ai.Actions {
 
         public float PathDistance = 100f;
 
+        private float _normalSpeed;
+
         private NavMeshAgent _navMeshAgent;
 
         private void Start() {
             if (!_navMeshAgent)
                 _navMeshAgent = GetComponent<NavMeshAgent>();
+            _normalSpeed = _navMeshAgent.speed;
         }
 
         protected override void OnActivate() {
@@ -22,7 +26,10 @@ namespace Cobble.SpyHunter.Ai.Actions {
         }
 
         public override void Call() {
-            if (_navMeshAgent.remainingDistance <= PathThreshold)
+            if (_navMeshAgent.remainingDistance <= PathThreshold ||
+                _navMeshAgent.destination.z < transform.position.z ||
+                Mathf.Abs(_navMeshAgent.destination.x - transform.position.x) > float.Epsilon)
+
                 SetRandomDestination();
         }
 
@@ -31,7 +38,7 @@ namespace Cobble.SpyHunter.Ai.Actions {
 
             var samplePos = new Vector3(transform.position.x, transform.position.y,
                 transform.position.z + PathDistance);
-            
+
             if (NavMesh.SamplePosition(samplePos, out hit, PathThreshold, _navMeshAgent.areaMask))
                 _navMeshAgent.SetDestination(hit.position);
             else {
@@ -41,6 +48,19 @@ namespace Cobble.SpyHunter.Ai.Actions {
                     _navMeshAgent.SetDestination(hit.position);
                 }
             }
+        }
+
+        private void OnCollisionEnter(Collision other) {
+            if (other.gameObject.CompareTag("Player")) {
+                if (Vector3.Dot(transform.forward, (other.transform.position - transform.position).normalized) < 0.5f)
+                    _navMeshAgent.speed = other.gameObject.GetComponent<CarController>().MovementSettings
+                        .CurrentTargetSpeed;
+            }
+        }
+
+        private void OnCollisionExit(Collision other) {
+            if (other.gameObject.CompareTag("Player"))
+                _navMeshAgent.speed = _normalSpeed;
         }
     }
 }

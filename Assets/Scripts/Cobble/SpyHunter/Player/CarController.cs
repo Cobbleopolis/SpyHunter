@@ -56,7 +56,7 @@ namespace Cobble.SpyHunter.Player {
                 _rigidbody.MovePosition(_rigidbody.position +
                                         transform.right * input.x * MovementSettings.HorizontalSpeed);
             if (input.y > float.Epsilon)
-                _rigidbody.AddForce(transform.forward * input.y * MovementSettings.MovementSpeed, ForceMode.Force);
+                _rigidbody.AddForce(transform.forward * input.y * MovementSettings.MovementSpeed, ForceMode.VelocityChange);
             if (AccelerationTrail)
                 AccelerationTrail.enabled = input.y > float.Epsilon &&
                                             MovementSettings.CurrentTargetSpeed >= MovementSettings.MaxSpeed / 2f;

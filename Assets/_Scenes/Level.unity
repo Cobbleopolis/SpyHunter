@@ -237,7 +237,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 31250546}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 2.5
+  m_Radius: 0.1
   m_Speed: 30
   m_Acceleration: 20
   avoidancePriority: 50
@@ -2342,6 +2342,7 @@ MonoBehaviour:
   SpeedVariant: 25
   VehiclePrefabs:
   - {fileID: 1485247865382840, guid: 204d2e728ce2ffc45b6bf81797df559d, type: 2}
+  - {fileID: 1485247865382840, guid: 204d2e728ce2ffc45b6bf81797df559d, type: 2}
   - {fileID: 1485247865382840, guid: fb72ebcb53d8fb74fa9cec8bf9481b29, type: 2}
 --- !u!65 &1162169088
 BoxCollider:
@@ -3294,7 +3295,7 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Time: 0.25
+  m_Time: 0.05
   m_Parameters:
     serializedVersion: 2
     widthMultiplier: 1
