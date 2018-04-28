@@ -1,20 +1,15 @@
-﻿using System;
-using Cobble.Core.Lib.AI;
+﻿using Cobble.Core.Lib.AI;
 using UnityEngine;
 using UnityEngine.AI;
 using Random = UnityEngine.Random;
 
 namespace Cobble.SpyHunter.Ai.Actions {
-    
     [RequireComponent(typeof(NavMeshAgent))]
     public class DrivingAiAction : AiAction {
-        
         public float PathThreshold = 5f;
 
         public float PathDistance = 100f;
 
-        public float MaxDistance = 1000f;
-        
         private NavMeshAgent _navMeshAgent;
 
         private void Start() {
@@ -23,18 +18,29 @@ namespace Cobble.SpyHunter.Ai.Actions {
         }
 
         protected override void OnActivate() {
-            _navMeshAgent.SetDestination(GetRandomPointOnRoad());
+            SetRandomDestination();
         }
-        
+
         public override void Call() {
-            if (_navMeshAgent.remainingDistance <= PathThreshold && transform.position.z < MaxDistance - PathDistance)
-                _navMeshAgent.SetDestination(GetRandomPointOnRoad());
+            if (_navMeshAgent.remainingDistance <= PathThreshold)
+                SetRandomDestination();
         }
-        
-        private Vector3 GetRandomPointOnRoad() {
+
+        public void SetRandomDestination() {
             NavMeshHit hit;
-            var samplePos = new Vector3(Random.Range(30, 70), transform.position.y, Math.Min(transform.position.z + PathDistance, MaxDistance));
-            return NavMesh.SamplePosition(samplePos, out hit, PathThreshold, _navMeshAgent.areaMask) ? hit.position : Vector3.zero;
+
+            var samplePos = new Vector3(transform.position.x, transform.position.y,
+                transform.position.z + PathDistance);
+            
+            if (NavMesh.SamplePosition(samplePos, out hit, PathThreshold, _navMeshAgent.areaMask))
+                _navMeshAgent.SetDestination(hit.position);
+            else {
+                samplePos = new Vector3(Random.Range(transform.position.x - 15f, transform.position.x + 15f),
+                    transform.position.y, transform.position.z + PathDistance);
+                if (NavMesh.SamplePosition(samplePos, out hit, PathThreshold, _navMeshAgent.areaMask)) {
+                    _navMeshAgent.SetDestination(hit.position);
+                }
+            }
         }
     }
 }
