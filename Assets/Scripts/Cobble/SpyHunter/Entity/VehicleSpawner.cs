@@ -1,13 +1,15 @@
 ﻿using System.Collections;
 using Cobble.Core.Managers;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace Cobble.SpyHunter.Entity {
     public class VehicleSpawner : MonoBehaviour {
-
         public Collider SpawnArea;
 
         public float SpawnTimer = 5f;
+
+        public float SpeedVariant = 25f;
 
         public GameObject[] VehiclePrefabs;
 
@@ -39,7 +41,11 @@ namespace Cobble.SpyHunter.Entity {
         }
 
         private void SpawnVehicle(Vector3 spawnLocation) {
-            Instantiate(VehiclePrefabs[Random.Range(0, VehiclePrefabs.Length)], spawnLocation, Quaternion.identity);
+            var vehicleGameObject = Instantiate(VehiclePrefabs[Random.Range(0, VehiclePrefabs.Length)], spawnLocation,
+                Quaternion.identity);
+            var vehicleNavMeshAgent = vehicleGameObject.GetComponent<NavMeshAgent>();
+            vehicleNavMeshAgent.speed = Random.Range(vehicleNavMeshAgent.speed,
+                vehicleNavMeshAgent.speed + SpeedVariant);
         }
     }
 }
