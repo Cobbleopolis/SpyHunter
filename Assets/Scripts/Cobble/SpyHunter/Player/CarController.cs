@@ -25,6 +25,8 @@ namespace Cobble.SpyHunter.Player {
 
         [SerializeField] private GuiManager _guiManager;
 
+        [SerializeField] private LifeHandler _lifeHandler;
+
         private void Start() {
             if (!_rigidbody)
                 _rigidbody = GetComponentInChildren<Rigidbody>();
@@ -34,6 +36,9 @@ namespace Cobble.SpyHunter.Player {
                 AccelerationTrail = GetComponentInChildren<TrailRenderer>();
             if (AccelerationTrail)
                 AccelerationTrail.enabled = false;
+            
+            if (!_lifeHandler)
+                _lifeHandler = GetComponentInChildren<LifeHandler>();
         }
 
         private void Update() {
@@ -74,6 +79,8 @@ namespace Cobble.SpyHunter.Player {
 
         private void UpdateCurrentSpeed(Vector2 input) {
             if (input == Vector2.zero) return;
+            if (!_lifeHandler.enabled && input.y > float.Epsilon)
+                _lifeHandler.enabled = true;
             MovementSettings.CurrentTargetSpeed = Mathf.Clamp(MovementSettings.CurrentTargetSpeed + input.y, 0f,
                 MovementSettings.MaxSpeed);
         }

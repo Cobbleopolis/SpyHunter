@@ -199,6 +199,7 @@ MonoBehaviour:
   AccelerationTrail: {fileID: 1924751535}
   _rigidbody: {fileID: 31250548}
   _guiManager: {fileID: 371277208}
+  _lifeHandler: {fileID: 0}
 --- !u!54 &31250548 stripped
 Rigidbody:
   m_PrefabParentObject: {fileID: 54214582986726448, guid: 66ee979ba19df5b4189cd1870c3a1583,
@@ -256,7 +257,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 31250546}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f131319677d54fb782bbd1d868e946f7, type: 3}
   m_Name: 
