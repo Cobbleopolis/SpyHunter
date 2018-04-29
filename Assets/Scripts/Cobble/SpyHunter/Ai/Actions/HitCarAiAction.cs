@@ -6,7 +6,7 @@ namespace Cobble.SpyHunter.Ai.Actions {
 
     [RequireComponent(typeof(NavMeshAgent))]
     [RequireComponent(typeof(Rigidbody))]
-    public class ShotCarAiAction : AiAction {
+    public class HitCarAiAction : AiAction {
         
         [SerializeField]
         private NavMeshAgent _navMeshAgent;
@@ -26,9 +26,9 @@ namespace Cobble.SpyHunter.Ai.Actions {
             _navMeshAgent.stoppingDistance = 0;
             _navMeshAgent.isStopped = true;
             _navMeshAgent.ResetPath();
-            _rigidbody.constraints = RigidbodyConstraints.FreezePosition;
-            foreach (var rigidbodyCollider in _rigidbody.GetComponentsInChildren<Collider>())
-                rigidbodyCollider.enabled = false;
+//            _rigidbody.constraints = RigidbodyConstraints.FreezePosition;
+//            foreach (var rigidbodyCollider in _rigidbody.GetComponentsInChildren<Collider>())
+//                rigidbodyCollider.enabled = false;
         }
         
         public override void Call() {

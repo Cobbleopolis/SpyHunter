@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Cobble.SpyHunter.Ai.Controllers;
+using UnityEngine;
 
 namespace Cobble.SpyHunter.Entity {
     [RequireComponent(typeof(Rigidbody))]
@@ -11,6 +12,10 @@ namespace Cobble.SpyHunter.Entity {
         }
 
         private void OnCollisionEnter(Collision other) {
+            var carAiController = other.gameObject.GetComponent<CarAiController>();
+            if (carAiController)
+                carAiController.HasBeenHit = true;
+            other.rigidbody.velocity = Vector3.zero;
             Destroy(gameObject);
         }
 

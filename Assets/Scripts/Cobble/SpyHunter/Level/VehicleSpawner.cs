@@ -3,7 +3,7 @@ using Cobble.Core.Managers;
 using UnityEngine;
 using UnityEngine.AI;
 
-namespace Cobble.SpyHunter.Entity {
+namespace Cobble.SpyHunter.Level {
     public class VehicleSpawner : MonoBehaviour {
         public Collider SpawnArea;
 
