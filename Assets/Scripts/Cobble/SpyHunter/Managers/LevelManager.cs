@@ -41,6 +41,7 @@ namespace Cobble.SpyHunter.Managers {
         }
 
         private void ChangeTerrainTexture(int textureIndex) {
+            if (!TerrainObject) return;
             var splatPrototypes = TerrainObject.terrainData.splatPrototypes;
             if (splatPrototypes[0] == null) return;
             splatPrototypes[0].texture = TerrainTextures[textureIndex];

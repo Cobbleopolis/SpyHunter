@@ -16,12 +16,6 @@ namespace Cobble.Core.Managers {
 			ItemRegistry.RegisterItems();
 		}
 
-		private void Start() {
-
-		}
-
-		private void Update() { }
-
 		private void OnApplicationQuit() {
 			IsQuitting = true;
 		}
@@ -36,6 +30,7 @@ namespace Cobble.Core.Managers {
 			Time.timeScale = 1;
 		}
 
+		// ReSharper disable once MemberCanBeMadeStatic.Global
 		public void ExitGame() {
 			Application.Quit();
 		}
