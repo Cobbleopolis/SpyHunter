@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using Cobble.SpyHunter.Ai.Actions;
 using Cobble.SpyHunter.Entity;
+using Cobble.SpyHunter.Player;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -36,11 +37,13 @@ namespace Cobble.SpyHunter.Level {
 
         private void TeleportObject(Component other) {
             var teleportLocation = RespawnOrigin.position - (gameObject.transform.position - other.transform.position);
+            
             var navMeshAgent = other.GetComponentInParent<NavMeshAgent>();
             if (navMeshAgent)
                 navMeshAgent.Warp(teleportLocation);
             else
                 other.transform.position = teleportLocation;
+            
             var drivingAiAction = other.GetComponentInParent<DrivingAiAction>();
             if (drivingAiAction)
                 drivingAiAction.SetRandomDestination();
