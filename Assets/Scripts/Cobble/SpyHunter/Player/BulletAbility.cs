@@ -18,12 +18,12 @@ namespace Cobble.SpyHunter.Player {
         public Rigidbody PlayerRigidbody;
 
         private void Update() {
-            if (!GameManager.IsPaused && Input.GetButtonDown("Fire1"))
+            if (!GameManager.Instance.IsPaused && Input.GetButtonDown("Fire1"))
                 StartCoroutine(FireBullet());
         }
 
         private IEnumerator FireBullet() {
-            while (!GameManager.IsPaused && Input.GetButton("Fire1")) {
+            while (!GameManager.Instance.IsPaused && Input.GetButton("Fire1")) {
                 foreach (var spawnTransform in BulletSpawnLocations)
                     SpawnBullet(spawnTransform);
                 yield return new WaitForSeconds(SpawnDelay);

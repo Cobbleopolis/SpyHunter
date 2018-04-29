@@ -30,7 +30,7 @@ namespace Cobble.SpyHunter.Level {
             while (enabled) {
                 yield return new WaitForSeconds(SpawnTimer);
                 _bounds = SpawnArea.bounds;
-                if (GameManager.IsPaused) continue;
+                if (GameManager.Instance.IsPaused) continue;
                 var spawnLoaction = new Vector3(
                     Random.Range(_bounds.min.x, _bounds.max.x),
                     Random.Range(_bounds.min.y, _bounds.max.y),

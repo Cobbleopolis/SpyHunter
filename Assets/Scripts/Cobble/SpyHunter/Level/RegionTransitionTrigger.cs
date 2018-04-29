@@ -12,17 +12,12 @@ namespace Cobble.SpyHunter.Level {
         public Transform RespawnOrigin;
 
         public float SpawnRenableDelay = 15f;
-        
-        private LevelManager _levelManager;
 
         private static int _lastTextureIndex;
 
         private void Start() {
             if (!RespawnOrigin)
                 RespawnOrigin = GameObject.FindGameObjectWithTag("Respawn").transform;
-
-            if (!_levelManager)
-                _levelManager = FindObjectOfType<LevelManager>();
         }
 
         private void OnTriggerEnter(Collider other) {
@@ -30,7 +25,7 @@ namespace Cobble.SpyHunter.Level {
             TeleportObject(other);
             if (!other.transform.parent || !other.transform.parent.CompareTag("Player")) return;
             HandlePlayerTeleportation(other);
-            _levelManager.OnRegionTransition();
+            LevelManager.Instance.OnRegionTransition();
         }
 
         private void TeleportObject(Component other) {

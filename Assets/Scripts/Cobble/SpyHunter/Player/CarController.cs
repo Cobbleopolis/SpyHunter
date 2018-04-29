@@ -23,15 +23,11 @@ namespace Cobble.SpyHunter.Player {
 
         [SerializeField] private Rigidbody _rigidbody;
 
-        [SerializeField] private GuiManager _guiManager;
-
         [SerializeField] private LifeHandler _lifeHandler;
 
         private void Start() {
             if (!_rigidbody)
                 _rigidbody = GetComponentInChildren<Rigidbody>();
-            if (!_guiManager)
-                _guiManager = FindObjectOfType<GuiManager>();
             if (!AccelerationTrail)
                 AccelerationTrail = GetComponentInChildren<TrailRenderer>();
             if (AccelerationTrail)
@@ -42,15 +38,15 @@ namespace Cobble.SpyHunter.Player {
         }
 
         private void Update() {
-            if (_guiManager.CurrentGuiScreen == GuiScreen.None && Input.GetButtonDown("Pause"))
-                _guiManager.Open(GuiScreen.PauseUi);
+            if (GuiManager.Instance.CurrentGuiScreen == GuiScreen.None && Input.GetButtonDown("Pause"))
+                GuiManager.Instance.Open(GuiScreen.PauseUi);
             else if (Input.GetButtonDown("Cancel") ||
-                     _guiManager.CurrentGuiScreen == GuiScreen.PauseUi && Input.GetButtonDown("Pause"))
-                _guiManager.GoBack();
+                     GuiManager.Instance.CurrentGuiScreen == GuiScreen.PauseUi && Input.GetButtonDown("Pause"))
+                GuiManager.Instance.GoBack();
         }
 
         private void FixedUpdate() {
-            if (GameManager.IsPaused) return;
+            if (GameManager.Instance.IsPaused) return;
             var input = GetInput();
             if (_rigidbody.velocity.sqrMagnitude <
                 MovementSettings.CurrentTargetSpeed * MovementSettings.CurrentTargetSpeed) {
@@ -68,7 +64,7 @@ namespace Cobble.SpyHunter.Player {
         }
 
         private Vector2 GetInput() {
-            if (GameManager.IsPaused) return Vector2.zero;
+            if (GameManager.Instance.IsPaused) return Vector2.zero;
             var input = new Vector2 {
                 x = Input.GetAxis("Horizontal"),
                 y = Input.GetAxis("Vertical")

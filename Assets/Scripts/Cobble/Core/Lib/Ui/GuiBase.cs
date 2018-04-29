@@ -24,14 +24,14 @@ namespace Cobble.Core.Lib.Ui {
             gameObject.SetActive(true);
 
             if (PausesGame)
-                GameManager.PauseGame();
+                GameManager.Instance.PauseGame();
             else
-                GameManager.UnpauseGame();
+                GameManager.Instance.UnpauseGame();
 
             if (FreeMouse)
-                GuiManager.FreeMouse();
+                GuiManager.Instance.FreeMouse();
             else
-                GuiManager.TrapMouse();
+                GuiManager.Instance.TrapMouse();
             
             if (DefaultSelectable)
                 DefaultSelectable.Select();

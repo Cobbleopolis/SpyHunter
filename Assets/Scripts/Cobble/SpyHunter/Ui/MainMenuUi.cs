@@ -15,7 +15,7 @@ namespace Cobble.SpyHunter.Ui {
         }
 
         public void ExitGame() {
-            GameManager.ExitGame();
+            GameManager.Instance.ExitGame();
         }
         
     }

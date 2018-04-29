@@ -1,16 +1,18 @@
-﻿using Cobble.Core.Lib.Registry;
+﻿using Cobble.Core.Lib;
+using Cobble.Core.Lib.Registry;
 using UnityEngine;
 
 namespace Cobble.Core.Managers {
 	[DisallowMultipleComponent]
-	public class GameManager : MonoBehaviour {
+	public class GameManager : Manager<GameManager> {
 
-		public static bool IsPaused;
+		public bool IsPaused;
 
-		public static bool IsQuitting;
+		public bool IsQuitting;
 
-		private void Awake() {
-			GuiManager.TrapMouse();
+		protected override void Awake() {
+			base.Awake();
+			GuiManager.Instance.TrapMouse();
 			ItemRegistry.RegisterItems();
 		}
 
@@ -24,17 +26,17 @@ namespace Cobble.Core.Managers {
 			IsQuitting = true;
 		}
 
-		public static void PauseGame() {
+		public void PauseGame() {
 			IsPaused = true;
 			Time.timeScale = 0;
 		}
 
-		public static void UnpauseGame() {
+		public void UnpauseGame() {
 			IsPaused = false;
 			Time.timeScale = 1;
 		}
 
-		public static void ExitGame() {
+		public void ExitGame() {
 			Application.Quit();
 		}
 	}

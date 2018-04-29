@@ -1,11 +1,13 @@
 ﻿using System.Collections.Generic;
+using Cobble.Core.Lib;
 using Cobble.Core.Lib.Ui;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Cobble.Core.Managers {
     [DisallowMultipleComponent]
     [RequireComponent(typeof(GameManager))]
-    public class GuiManager : MonoBehaviour {
+    public class GuiManager : Manager<GuiManager> {
 
         public GuiScreen CurrentGuiScreen {
             get { return _guiHistory.Count > 0 ? _guiHistory.Peek() : GuiScreen.None; }
@@ -17,7 +19,10 @@ namespace Cobble.Core.Managers {
         [SerializeField] private GameObject _rootCanvasGameObject;
         private Canvas _rootCanvas;
 
-        private void Awake() { }
+        protected override void Awake() {
+            base.Awake();
+            SceneManager.activeSceneChanged += OnActiveSceneChanged;
+        }
 
         private void Start() {
             foreach (var guiBase in _rootCanvasGameObject.GetComponentsInChildren<GuiBase>(true)) {
@@ -27,6 +32,10 @@ namespace Cobble.Core.Managers {
         }
 
         private void Update() { }
+
+        private void OnActiveSceneChanged(Scene current, Scene next) {
+            CloseAll();
+        }
 
         public GuiBase GetGuiBase(GuiScreen guiScreen) {
             return _guiScreens[guiScreen];
@@ -38,7 +47,7 @@ namespace Cobble.Core.Managers {
                 GetGuiBase(_guiHistory.Peek()).OnHide();
             if (guiScreen == GuiScreen.None) {
                 _guiHistory.Clear();
-                GameManager.UnpauseGame();
+                GameManager.Instance.UnpauseGame();
                 TrapMouse();
             } else if (_guiScreens.ContainsKey(guiScreen)) {
                 _guiHistory.Push(guiScreen);
@@ -58,7 +67,7 @@ namespace Cobble.Core.Managers {
             if (_guiHistory.Count > 0)
                 GetGuiBase(_guiHistory.Peek()).OnShow();
             if (CurrentGuiScreen != GuiScreen.None) return;
-            GameManager.UnpauseGame();
+            GameManager.Instance.UnpauseGame();
             TrapMouse();
         }
 
@@ -69,17 +78,17 @@ namespace Cobble.Core.Managers {
             Open(GuiScreen.None);
         }
 
-        public static void FreeMouse() {
+        public void FreeMouse() {
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
         }
 
-        public static void TrapMouse() {
+        public void TrapMouse() {
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
         }
 
-        public static bool IsMouseFree() {
+        public bool IsMouseFree() {
             return Cursor.lockState != CursorLockMode.Locked;
         }
     }

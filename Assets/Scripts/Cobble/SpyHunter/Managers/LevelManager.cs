@@ -1,10 +1,11 @@
-﻿using Cobble.Core.Managers;
+﻿using Cobble.Core.Lib;
+using Cobble.Core.Managers;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace Cobble.SpyHunter.Managers {
     [DisallowMultipleComponent]
-    public class LevelManager : MonoBehaviour {
+    public class LevelManager : Manager<LevelManager> {
         
         public Texture2D[] TerrainTextures;
 
@@ -14,13 +15,12 @@ namespace Cobble.SpyHunter.Managers {
 
         private void Start() {
             SceneManager.sceneLoaded += OnSceneLoad;
-
-            if (!TerrainObject)
-                TerrainObject = FindObjectOfType<Terrain>();
         }
 
         private void OnSceneLoad(Scene scene, LoadSceneMode loadSceneMode) {
-            GameManager.UnpauseGame();
+            GameManager.Instance.UnpauseGame();
+            if (!TerrainObject)
+                TerrainObject = FindObjectOfType<Terrain>();
             ChangeTerrainTexture(0);
         }
         

@@ -20,7 +20,7 @@ namespace Cobble.SpyHunter.Player {
         }
 
         private void Update() {
-            if (GameManager.IsPaused || LeadInCount <= 0) return;
+            if (GameManager.Instance.IsPaused || LeadInCount <= 0) return;
             if (_delayCount >= DecrementDelay) {
                 LeadInCount--;
                 _delayCount = 0;
