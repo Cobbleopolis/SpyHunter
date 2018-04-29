@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using Cobble.Core.Lib.AI;
 using Cobble.SpyHunter.Ai.Actions;
 using Cobble.SpyHunter.Entity;
@@ -9,13 +10,14 @@ namespace Cobble.SpyHunter.Ai.Controllers {
     [RequireComponent(typeof(DrivingAiAction))]
     [RequireComponent(typeof(HitCarAiAction))]
     public class CarAiController : AiController {
+        
+        public bool HasBeenHit;
+        
         private DrivingAiAction _drivingAiAction;
 
         private HitCarAiAction _hitCarAiAction;
 
 //        private bool _hasBeenHit;
-
-        public bool HasBeenHit;
 
         private void Start() {
             _drivingAiAction = GetComponent<DrivingAiAction>();

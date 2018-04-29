@@ -11,6 +11,8 @@ namespace Cobble.SpyHunter.Level {
 
         public float SpeedVariant = 25f;
 
+        public float MaxSpawnDistance = 1950f;
+
         public GameObject[] VehiclePrefabs;
 
         private Bounds _bounds;
@@ -29,8 +31,8 @@ namespace Cobble.SpyHunter.Level {
         private IEnumerator SpawnHandler() {
             while (enabled) {
                 yield return new WaitForSeconds(SpawnTimer);
+                if (GameManager.Instance.IsPaused || transform.position.x >= MaxSpawnDistance) continue;
                 _bounds = SpawnArea.bounds;
-                if (GameManager.Instance.IsPaused) continue;
                 var spawnLoaction = new Vector3(
                     Random.Range(_bounds.min.x, _bounds.max.x),
                     Random.Range(_bounds.min.y, _bounds.max.y),

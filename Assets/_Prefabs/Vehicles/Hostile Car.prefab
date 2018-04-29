@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 33669847292187960}
   - component: {fileID: 23197853889429934}
   - component: {fileID: 65177391580877818}
+  - component: {fileID: 114658212024383928}
   m_Layer: 0
   m_Name: Car Model
   m_TagString: Untagged
@@ -160,6 +161,19 @@ MonoBehaviour:
   IsAiActive: 0
   _navMeshAgent: {fileID: 195581345371999464}
   _rigidbody: {fileID: 54899883108260336}
+--- !u!114 &114658212024383928
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1337592479625290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2262c5e814af4895bce810048c4870f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxOffScreenTime: 1
+  _gameObjectToDestroy: {fileID: 1485247865382840}
 --- !u!114 &114835878171467956
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -186,6 +200,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentState: {fileID: 0}
+  HasBeenHit: 0
 --- !u!195 &195581345371999464
 NavMeshAgent:
   m_ObjectHideFlags: 1
@@ -195,7 +210,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 2.5
-  m_Speed: 26
+  m_Speed: 25
   m_Acceleration: 20
   avoidancePriority: 50
   m_AngularSpeed: 120

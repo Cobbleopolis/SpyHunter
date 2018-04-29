@@ -12,6 +12,8 @@ namespace Cobble.SpyHunter.Player {
 
             public float HorizontalSpeed = 0.5f;
 
+            public float AccelerationSpeed = 20f;
+
             public float MaxSpeed = 25.0f;
 
             public float CurrentTargetSpeed;
@@ -57,10 +59,11 @@ namespace Cobble.SpyHunter.Player {
                 _rigidbody.MovePosition(_rigidbody.position +
                                         transform.right * input.x * MovementSettings.HorizontalSpeed);
             if (input.y > float.Epsilon)
-                _rigidbody.AddForce(transform.forward * input.y * MovementSettings.MovementSpeed, ForceMode.VelocityChange);
+                _rigidbody.AddForce(transform.forward * input.y * MovementSettings.AccelerationSpeed, ForceMode.Acceleration);
             if (AccelerationTrail)
                 AccelerationTrail.enabled = input.y > float.Epsilon &&
                                             MovementSettings.CurrentTargetSpeed >= MovementSettings.MaxSpeed / 2f;
+//            Debug.Log(_rigidbody.velocity);
         }
 
         private Vector2 GetInput() {

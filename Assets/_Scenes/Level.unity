@@ -170,7 +170,7 @@ Prefab:
       objectReference: {fileID: 751992885}
     - target: {fileID: 1935918688901074, guid: 7bb712782bc905e42b26d1fafd03ce5f, type: 2}
       propertyPath: m_Name
-      value: Road (2)
+      value: Road Left
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7bb712782bc905e42b26d1fafd03ce5f, type: 2}
@@ -194,11 +194,12 @@ MonoBehaviour:
   MovementSettings:
     MovementSpeed: 2.5
     HorizontalSpeed: 0.25
+    AccelerationSpeed: 50
     MaxSpeed: 25
     CurrentTargetSpeed: 0
   AccelerationTrail: {fileID: 1924751535}
   _rigidbody: {fileID: 31250548}
-  _lifeHandler: {fileID: 0}
+  _lifeHandler: {fileID: 31250552}
 --- !u!54 &31250548 stripped
 Rigidbody:
   m_PrefabParentObject: {fileID: 54214582986726448, guid: 66ee979ba19df5b4189cd1870c3a1583,
@@ -235,11 +236,11 @@ NavMeshAgent:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 31250546}
-  m_Enabled: 1
+  m_Enabled: 0
   m_AgentTypeID: 0
   m_Radius: 0.1
   m_Speed: 30
-  m_Acceleration: 20
+  m_Acceleration: 50
   avoidancePriority: 50
   m_AngularSpeed: 120
   m_StoppingDistance: 5
@@ -365,7 +366,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 31250549}
-  m_RootOrder: 6
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &254180275
 GameObject:
@@ -393,7 +394,7 @@ Transform:
   m_LocalScale: {x: 1, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 31250549}
-  m_RootOrder: 7
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!43 &304687311
 Mesh:
@@ -685,7 +686,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh-1318
+  m_Name: pb_Mesh-1218320
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -1082,12 +1083,12 @@ GameObject:
   - component: {fileID: 655775199}
   - component: {fileID: 655775197}
   m_Layer: 0
-  m_Name: Despawn Area
+  m_Name: Despawn Area Front
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &655775196
 Transform:
   m_ObjectHideFlags: 0
@@ -1099,7 +1100,7 @@ Transform:
   m_LocalScale: {x: 200, y: 1, z: 4}
   m_Children: []
   m_Father: {fileID: 31250549}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &655775197
 MonoBehaviour:
@@ -1373,7 +1374,7 @@ Prefab:
       objectReference: {fileID: 431863712}
     - target: {fileID: 1935918688901074, guid: 7bb712782bc905e42b26d1fafd03ce5f, type: 2}
       propertyPath: m_Name
-      value: Road (1)
+      value: Road Right
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7bb712782bc905e42b26d1fafd03ce5f, type: 2}
@@ -1427,6 +1428,10 @@ Prefab:
       propertyPath: TerrainObject
       value: 
       objectReference: {fileID: 1897624894}
+    - target: {fileID: 1412282790469790, guid: 8f3d85cefea16374c8fcc368b08ca90c, type: 2}
+      propertyPath: m_Name
+      value: Region Transition Right
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8f3d85cefea16374c8fcc368b08ca90c, type: 2}
   m_IsPrefabParent: 0
@@ -1441,7 +1446,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh-1322
+  m_Name: pb_Mesh-1218324
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -1571,7 +1576,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh-1148
+  m_Name: pb_Mesh-1218172
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -1987,7 +1992,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh-1152
+  m_Name: pb_Mesh-1218176
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -2191,7 +2196,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh-1150
+  m_Name: pb_Mesh-1218174
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -2328,7 +2333,7 @@ GameObject:
   - component: {fileID: 1162169088}
   - component: {fileID: 1162169086}
   m_Layer: 0
-  m_Name: Spawn Area
+  m_Name: Spawn Area Back
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2345,7 +2350,7 @@ Transform:
   m_LocalScale: {x: 20, y: 1, z: 4}
   m_Children: []
   m_Father: {fileID: 31250549}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1162169086
 MonoBehaviour:
@@ -2359,11 +2364,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SpawnArea: {fileID: 1162169088}
-  SpawnTimer: 2
-  SpeedVariant: 25
+  SpawnTimer: 5
+  SpeedVariant: 10
+  MaxSpawnDistance: 1950
   VehiclePrefabs:
-  - {fileID: 1485247865382840, guid: fb72ebcb53d8fb74fa9cec8bf9481b29, type: 2}
-  - {fileID: 1485247865382840, guid: fb72ebcb53d8fb74fa9cec8bf9481b29, type: 2}
+  - {fileID: 1485247865382840, guid: 204d2e728ce2ffc45b6bf81797df559d, type: 2}
+  - {fileID: 1485247865382840, guid: 204d2e728ce2ffc45b6bf81797df559d, type: 2}
   - {fileID: 1485247865382840, guid: fb72ebcb53d8fb74fa9cec8bf9481b29, type: 2}
 --- !u!65 &1162169088
 BoxCollider:
@@ -2383,6 +2389,67 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1162169084}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1196869574
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1196869575}
+  - component: {fileID: 1196869578}
+  - component: {fileID: 1196869577}
+  - component: {fileID: 1196869576}
+  m_Layer: 0
+  m_Name: Despawn Area Back
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1196869575
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1196869574}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.5, z: -45}
+  m_LocalScale: {x: 200, y: 1, z: 4}
+  m_Children: []
+  m_Father: {fileID: 31250549}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1196869576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1196869574}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f00168200544dd09ab21bcba0bd3ec4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &1196869577
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1196869574}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!33 &1196869578
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1196869574}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &1232544497
 GameObject:
@@ -2767,7 +2834,7 @@ Prefab:
     - target: {fileID: 224512301428209014, guid: 79c9811d948096345b82714d8b065103,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -1.0869608
       objectReference: {fileID: 0}
     - target: {fileID: 224512301428209014, guid: 79c9811d948096345b82714d8b065103,
         type: 2}
@@ -2897,7 +2964,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh-1320
+  m_Name: pb_Mesh-1218322
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -3292,7 +3359,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 31250549}
-  m_RootOrder: 5
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!43 &1824195335
 Mesh:
@@ -3424,6 +3491,75 @@ Mesh:
   m_BakedConvexCollisionMesh: 
   m_BakedTriangleCollisionMesh: 
   m_MeshOptimized: 0
+--- !u!1 &1829523403
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1829523404}
+  - component: {fileID: 1829523407}
+  - component: {fileID: 1829523406}
+  - component: {fileID: 1829523405}
+  m_Layer: 0
+  m_Name: Spawn Area Front
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1829523404
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1829523403}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.5, z: 26}
+  m_LocalScale: {x: 20, y: 1, z: 4}
+  m_Children: []
+  m_Father: {fileID: 31250549}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1829523405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1829523403}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53c947ecbe6b430abc056ca77005ba7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SpawnArea: {fileID: 1829523406}
+  SpawnTimer: 5
+  SpeedVariant: -5
+  MaxSpawnDistance: 1950
+  VehiclePrefabs:
+  - {fileID: 1485247865382840, guid: 204d2e728ce2ffc45b6bf81797df559d, type: 2}
+  - {fileID: 1485247865382840, guid: 204d2e728ce2ffc45b6bf81797df559d, type: 2}
+  - {fileID: 1485247865382840, guid: fb72ebcb53d8fb74fa9cec8bf9481b29, type: 2}
+--- !u!65 &1829523406
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1829523403}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!33 &1829523407
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1829523403}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &1897624892
 GameObject:
   m_ObjectHideFlags: 0
@@ -3559,7 +3695,7 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Time: 0.05
+  m_Time: 0.1
   m_Parameters:
     serializedVersion: 2
     widthMultiplier: 1
@@ -4011,7 +4147,7 @@ Prefab:
       objectReference: {fileID: 670390305}
     - target: {fileID: 1412282790469790, guid: 8f3d85cefea16374c8fcc368b08ca90c, type: 2}
       propertyPath: m_Name
-      value: Region Transition (1)
+      value: Region Transition Left
       objectReference: {fileID: 0}
     - target: {fileID: 114393024586512200, guid: 8f3d85cefea16374c8fcc368b08ca90c,
         type: 2}
