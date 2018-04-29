@@ -3,18 +3,49 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace Cobble.SpyHunter.Managers {
+    [DisallowMultipleComponent]
     public class LevelManager : MonoBehaviour {
+        
+        public Texture2D[] TerrainTextures;
+
+        public Terrain TerrainObject;
+
+        private static int _lastTextureIndex;
 
         private void Start() {
             SceneManager.sceneLoaded += OnSceneLoad;
-        }
 
-        private void OnDestroy() {
-//            SceneManager.sceneLoaded -= OnSceneLoad;
+            if (!TerrainObject)
+                TerrainObject = FindObjectOfType<Terrain>();
         }
 
         private void OnSceneLoad(Scene scene, LoadSceneMode loadSceneMode) {
             GameManager.UnpauseGame();
+            ChangeTerrainTexture(0);
+        }
+        
+        private void OnApplicationQuit() {
+            ChangeTerrainTexture(0);
+        }
+
+        public void OnRegionTransition() {
+            ChangeRandomTerrainTexture();
+        }
+        
+        private void ChangeRandomTerrainTexture() {
+            int textureIndex;
+            do {
+                textureIndex = Random.Range(0, TerrainTextures.Length);
+            } while (textureIndex == _lastTextureIndex);
+            ChangeTerrainTexture(textureIndex);
+        }
+
+        private void ChangeTerrainTexture(int textureIndex) {
+            var splatPrototypes = TerrainObject.terrainData.splatPrototypes;
+            if (splatPrototypes[0] == null) return;
+            splatPrototypes[0].texture = TerrainTextures[textureIndex];
+            TerrainObject.terrainData.splatPrototypes = splatPrototypes;
+            _lastTextureIndex = textureIndex;
         }
     }
 }

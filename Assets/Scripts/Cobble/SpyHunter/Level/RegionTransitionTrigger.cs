@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using Cobble.SpyHunter.Ai.Actions;
 using Cobble.SpyHunter.Entity;
+using Cobble.SpyHunter.Managers;
 using Cobble.SpyHunter.Player;
 using UnityEngine;
 using UnityEngine.AI;
@@ -10,21 +11,18 @@ namespace Cobble.SpyHunter.Level {
 
         public Transform RespawnOrigin;
 
-        public Texture2D[] TerrainTextures;
-
-        public Terrain TerrainObject;
-
         public float SpawnRenableDelay = 15f;
+        
+        private LevelManager _levelManager;
 
         private static int _lastTextureIndex;
 
         private void Start() {
             if (!RespawnOrigin)
                 RespawnOrigin = GameObject.FindGameObjectWithTag("Respawn").transform;
-        }
 
-        private void OnApplicationQuit() {
-            ChangeTerrainTexture(0);
+            if (!_levelManager)
+                _levelManager = FindObjectOfType<LevelManager>();
         }
 
         private void OnTriggerEnter(Collider other) {
@@ -32,7 +30,7 @@ namespace Cobble.SpyHunter.Level {
             TeleportObject(other);
             if (!other.transform.parent || !other.transform.parent.CompareTag("Player")) return;
             HandlePlayerTeleportation(other);
-            ChangeRandomTerrainTexture();
+            _levelManager.OnRegionTransition();
         }
 
         private void TeleportObject(Component other) {
@@ -62,22 +60,6 @@ namespace Cobble.SpyHunter.Level {
         private IEnumerator ReenableVehicleSpawner(Behaviour vehicleSpawner) {
             yield return new WaitForSeconds(SpawnRenableDelay);
             vehicleSpawner.enabled = true;
-        }
-
-        private void ChangeRandomTerrainTexture() {
-            int textureIndex;
-            do {
-                textureIndex = Random.Range(0, TerrainTextures.Length);
-            } while (textureIndex == _lastTextureIndex);
-            ChangeTerrainTexture(textureIndex);
-        }
-
-        private void ChangeTerrainTexture(int textureIndex) {
-            var splatPrototypes = TerrainObject.terrainData.splatPrototypes;
-            if (splatPrototypes[0] == null) return;
-            splatPrototypes[0].texture = TerrainTextures[textureIndex];
-            TerrainObject.terrainData.splatPrototypes = splatPrototypes;
-            _lastTextureIndex = textureIndex;
         }
     }
 }
