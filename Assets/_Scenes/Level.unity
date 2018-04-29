@@ -264,6 +264,23 @@ MonoBehaviour:
   LeadInCount: 1000
   DecrementDelay: 5
   _extraLives: 0
+--- !u!114 &31250553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 31250546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d72f2222c5394d7a80af03bb11777b51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OilSlickPrefab: {fileID: 1112648693525306, guid: 1832507c9cb2c424da0401745ae04a89,
+    type: 2}
+  OilSpawnLocation: {fileID: 254180276}
+  SpawnDelay: 0.05
+  MaxSpawnTime: 0.75
+  PlayerCollider: {fileID: 1458083470}
 --- !u!1001 &105816776
 Prefab:
   m_ObjectHideFlags: 0
@@ -348,6 +365,34 @@ Transform:
   m_Children: []
   m_Father: {fileID: 31250549}
   m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &254180275
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 254180276}
+  m_Layer: 0
+  m_Name: Oil Spawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &254180276
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 254180275}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -1, z: -4}
+  m_LocalScale: {x: 1, y: 2, z: 1}
+  m_Children: []
+  m_Father: {fileID: 31250549}
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!43 &304687311
 Mesh:

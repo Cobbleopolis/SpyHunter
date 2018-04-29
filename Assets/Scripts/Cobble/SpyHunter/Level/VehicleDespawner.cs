@@ -8,7 +8,7 @@ namespace Cobble.SpyHunter.Level {
             var needsToDespawn = other.gameObject.GetComponentInParent<CarAiController>() ||
                                  other.gameObject.GetComponentInParent<OilSlickEntity>();
             if (needsToDespawn)
-                Destroy(other.attachedRigidbody.gameObject);
+                Destroy(other.attachedRigidbody ? other.attachedRigidbody.gameObject : other.gameObject);
         }
     }
 }

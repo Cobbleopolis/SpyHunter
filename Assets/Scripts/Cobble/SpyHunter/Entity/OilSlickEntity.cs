@@ -10,6 +10,12 @@ namespace Cobble.SpyHunter.Entity {
 
         public ForceMode ApplyForceMode = ForceMode.VelocityChange;
 
+        public float MaxLife = 10f;
+
+        private void Start() {
+            Destroy(gameObject, MaxLife);
+        }
+
         private void OnTriggerEnter(Collider other) {
             var carAiController = other.GetComponentInParent<CarAiController>(); 
             if (!carAiController || carAiController.HasBeenHit) return;
@@ -20,7 +26,6 @@ namespace Cobble.SpyHunter.Entity {
                 torqueVec = -torqueVec;
                 forceDirection = -forceDirection;
             }
-            Debug.Log(other.name + " | " + torqueVec + " | " + forceDirection);
             other.attachedRigidbody.AddRelativeTorque(torqueVec, ApplyForceMode);
             other.attachedRigidbody.velocity = forceDirection;
         }
