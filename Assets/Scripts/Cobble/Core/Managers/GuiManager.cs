@@ -96,14 +96,12 @@ namespace Cobble.Core.Managers {
             Open(GuiScreen.None);
         }
 
-        // ReSharper disable once MemberCanBeMadeStatic.Global
-        public void FreeMouse() {
+        public static void FreeMouse() {
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
         }
 
-        // ReSharper disable once MemberCanBeMadeStatic.Global
-        public void TrapMouse() {
+        public static void TrapMouse() {
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
         }

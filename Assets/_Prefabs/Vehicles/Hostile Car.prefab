@@ -162,6 +162,7 @@ MonoBehaviour:
   IsHostile: 1
   PointValue: 100
   ScoreDelayTime: 5
+  FreezeScore: 0
   _navMeshAgent: {fileID: 195581345371999464}
   _rigidbody: {fileID: 54899883108260336}
 --- !u!114 &114658212024383928
@@ -203,7 +204,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentState: {fileID: 0}
+  InvalidAreaName: Road
+  RoadCheckRadius: 0.1
   HasBeenHit: 0
+  _drivingAiAction: {fileID: 114835878171467956}
+  _hitCarAiAction: {fileID: 114450166188956554}
 --- !u!195 &195581345371999464
 NavMeshAgent:
   m_ObjectHideFlags: 1
@@ -223,5 +228,5 @@ NavMeshAgent:
   m_AutoRepath: 1
   m_Height: 1.5
   m_BaseOffset: 1
-  m_WalkableMask: 24
+  m_WalkableMask: 25
   m_ObstacleAvoidanceType: 4

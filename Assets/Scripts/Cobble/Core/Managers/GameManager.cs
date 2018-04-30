@@ -1,4 +1,5 @@
-﻿using Cobble.Core.Lib;
+﻿using System.Collections;
+using Cobble.Core.Lib;
 using Cobble.Core.Lib.Registry;
 using UnityEngine;
 
@@ -12,7 +13,7 @@ namespace Cobble.Core.Managers {
 
 		protected override void Awake() {
 			base.Awake();
-			GuiManager.Instance.TrapMouse();
+			GuiManager.TrapMouse();
 			ItemRegistry.RegisterItems();
 		}
 

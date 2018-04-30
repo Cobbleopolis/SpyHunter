@@ -7,6 +7,9 @@ using Random = UnityEngine.Random;
 namespace Cobble.SpyHunter.Ai.Actions {
     [RequireComponent(typeof(NavMeshAgent))]
     public class DrivingAiAction : AiAction {
+        
+        public string InvalidAreaName = "Walkable";
+        
         public float PathThreshold = 5f;
 
         public float PathDistance = 100f;
@@ -14,11 +17,15 @@ namespace Cobble.SpyHunter.Ai.Actions {
         private float _normalSpeed;
 
         private NavMeshAgent _navMeshAgent;
+        
+        private int _invalidAreaMask;
 
         private void Start() {
             if (!_navMeshAgent)
                 _navMeshAgent = GetComponent<NavMeshAgent>();
             _normalSpeed = _navMeshAgent.speed;
+            
+            _invalidAreaMask = 1 << NavMesh.GetAreaFromName(InvalidAreaName);
         }
 
         protected override void OnActivate() {
@@ -44,7 +51,7 @@ namespace Cobble.SpyHunter.Ai.Actions {
             else {
                 samplePos = new Vector3(Random.Range(transform.position.x - 15f, transform.position.x + 15f),
                     transform.position.y, transform.position.z + PathDistance);
-                if (NavMesh.SamplePosition(samplePos, out hit, PathThreshold, _navMeshAgent.areaMask)) {
+                if (NavMesh.SamplePosition(samplePos, out hit, PathThreshold, _navMeshAgent.areaMask & ~_invalidAreaMask)) {
                     _navMeshAgent.SetDestination(hit.position);
                 }
             }

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Cobble.SpyHunter.Player {
     
@@ -12,6 +13,8 @@ namespace Cobble.SpyHunter.Player {
         public string VehicleLayerMaskName = "Vehicles";
         
         public string PlayerLayerMaskName = "Player";
+
+        public string GameOverSceneName = "Game Over";
 
         public float ImpulseThreshold = 5f;
 
@@ -64,10 +67,7 @@ namespace Cobble.SpyHunter.Player {
 
             if (!isFrontOrBehind || !_carController.IsAccelerating &&
                                      !(other.impulse.sqrMagnitude >= ImpulseThreshold * ImpulseThreshold)) return;
-            if (_lifeHandler.HasExtraLife())
-                OnCarDestroied();
-            else
-                Debug.Log("Game Over");
+            OnCarDestroied();
         }
 
         private void OnCarDestroied() {
@@ -76,15 +76,18 @@ namespace Cobble.SpyHunter.Player {
             _carController.MovementSettings.CurrentTargetSpeed = 0;
             _trailRenderer.enabled = false;
             Physics.IgnoreLayerCollision(_playerLayerMask, _vehicleLayerMask, true);
-            StartCoroutine(UndoCarDestroied());
             StartCoroutine(FlashPlayer());
+            StartCoroutine(UndoCarDestroied(_lifeHandler.HasExtraLife()));
         }
 
-        private IEnumerator UndoCarDestroied() {
-            yield return new WaitForSeconds(DeathDuration);
-            _carController.enabled = true;
-            _trailRenderer.enabled = true;
+        private IEnumerator UndoCarDestroied(bool hasExtraLife) {
+            yield return new WaitForSeconds(hasExtraLife ? DeathDuration : DeathDuration / 2f);
             Physics.IgnoreLayerCollision(_playerLayerMask, _vehicleLayerMask, false);
+            if (hasExtraLife) {
+                _carController.enabled = true;
+                _trailRenderer.enabled = true;
+            } else
+                SceneManager.LoadSceneAsync(GameOverSceneName);
         }
 
         private IEnumerator FlashPlayer() {

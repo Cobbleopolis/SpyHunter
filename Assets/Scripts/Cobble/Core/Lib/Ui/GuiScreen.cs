@@ -4,6 +4,7 @@ namespace Cobble.Core.Lib.Ui {
         None,
         MainMenu,
         PauseUi,
+        GameOver,
         Inventory
     }
 }

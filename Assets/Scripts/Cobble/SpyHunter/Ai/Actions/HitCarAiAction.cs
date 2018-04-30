@@ -14,6 +14,8 @@ namespace Cobble.SpyHunter.Ai.Actions {
         public int PointValue = 100;
 
         public float ScoreDelayTime = 5f;
+
+        public bool DelayScore = true;
         
         [SerializeField]
         private NavMeshAgent _navMeshAgent;
@@ -36,7 +38,7 @@ namespace Cobble.SpyHunter.Ai.Actions {
             var scoreHandler = FindObjectOfType<ScoreHandler>(); 
             if (IsHostile)
                 scoreHandler.PlayerScore += PointValue;
-            else
+            else if (DelayScore)
                 scoreHandler.DisableScoreHandler(ScoreDelayTime);
 //            _rigidbody.constraints = RigidbodyConstraints.FreezePosition;
 //            foreach (var rigidbodyCollider in _rigidbody.GetComponentsInChildren<Collider>())

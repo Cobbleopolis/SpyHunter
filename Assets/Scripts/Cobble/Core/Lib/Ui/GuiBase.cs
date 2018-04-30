@@ -6,10 +6,8 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace Cobble.Core.Lib.Ui {
-    
     [RequireComponent(typeof(CanvasRenderer))]
     public class GuiBase : MonoBehaviour {
-        
         public GuiScreen GuiScreen;
 
         public bool PausesGame;
@@ -31,19 +29,21 @@ namespace Cobble.Core.Lib.Ui {
 
             if (FreeMouse)
                 if (MouseHiddenUntilMove && GuiManager.CanHideMouseUntilMove()) {
-                        StartCoroutine(MouseMoveHandler());
+                    if (GuiManager.IsMouseFree())
+                        GuiManager.TrapMouse();
+                    StartCoroutine(MouseMoveHandler());
                     if (DefaultSelectable)
                         DefaultSelectable.Select();
                 } else
-                    GuiManager.Instance.FreeMouse();
+                    GuiManager.FreeMouse();
             else
-                GuiManager.Instance.TrapMouse();
+                GuiManager.TrapMouse();
         }
 
         private static IEnumerator MouseMoveHandler() {
             var initalMousePosition = Input.mousePosition;
             yield return new WaitUntil(() => initalMousePosition != Input.mousePosition);
-            GuiManager.Instance.FreeMouse();
+            GuiManager.FreeMouse();
             if (EventSystem.current.alreadySelecting)
                 EventSystem.current.SetSelectedGameObject(null);
         }
@@ -52,7 +52,5 @@ namespace Cobble.Core.Lib.Ui {
             gameObject.SetActive(false);
             EventSystem.current.SetSelectedGameObject(null);
         }
-
-        
     }
 }

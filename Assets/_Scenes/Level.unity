@@ -317,6 +317,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   VehicleLayerMaskName: Vehicles
   PlayerLayerMaskName: Player
+  GameOverSceneName: Game Over
   ImpulseThreshold: 5
   DotProductThreshold: 0.75
   DeathDuration: 5
@@ -651,79 +652,12 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d72fdd2372e9c7445af10a0367c1c195, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &371277206
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 371277207}
-  - component: {fileID: 371277209}
-  - component: {fileID: 371277208}
-  - component: {fileID: 371277210}
-  m_Layer: 0
-  m_Name: Game Controller
-  m_TagString: GameController
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &371277207
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 371277206}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &371277208
+--- !u!114 &371277208 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 371277206}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
+  m_PrefabParentObject: {fileID: 114436167394912730, guid: 5dba3a94da6b66c49ab993140c11c25a,
+    type: 2}
+  m_PrefabInternal: {fileID: 744230999}
   m_Script: {fileID: 11500000, guid: b554b36f017ba654c956d5e0c9e021c4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  GuiCanvasTag: Gui Canvas
-  _guiCanvas: {fileID: 0}
---- !u!114 &371277209
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 371277206}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9aae5821e4935248bf243e42516905d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  IsPaused: 0
-  IsQuitting: 0
---- !u!114 &371277210
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 371277206}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ea5272783964c74b02082cca3cdde40, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TerrainTextures:
-  - {fileID: 2800000, guid: 1c6c94e6f0b33b84794b532ebc14e8a3, type: 3}
-  - {fileID: 2800000, guid: 9470468fda72f4773a90a0306decbf0f, type: 3}
-  - {fileID: 2800000, guid: 3cedd75ba729c3847bddf7bb13f31a5b, type: 3}
-  TerrainObject: {fileID: 1897624894}
 --- !u!43 &431863712
 Mesh:
   m_ObjectHideFlags: 0
@@ -1482,6 +1416,53 @@ Prefab:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8f3d85cefea16374c8fcc368b08ca90c, type: 2}
+  m_IsPrefabParent: 0
+--- !u!1001 &744230999
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4228253970684824, guid: 5dba3a94da6b66c49ab993140c11c25a, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4228253970684824, guid: 5dba3a94da6b66c49ab993140c11c25a, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4228253970684824, guid: 5dba3a94da6b66c49ab993140c11c25a, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4228253970684824, guid: 5dba3a94da6b66c49ab993140c11c25a, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4228253970684824, guid: 5dba3a94da6b66c49ab993140c11c25a, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4228253970684824, guid: 5dba3a94da6b66c49ab993140c11c25a, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4228253970684824, guid: 5dba3a94da6b66c49ab993140c11c25a, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4228253970684824, guid: 5dba3a94da6b66c49ab993140c11c25a, type: 2}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114867000885377832, guid: 5dba3a94da6b66c49ab993140c11c25a,
+        type: 2}
+      propertyPath: TerrainObject
+      value: 
+      objectReference: {fileID: 1897624894}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 5dba3a94da6b66c49ab993140c11c25a, type: 2}
   m_IsPrefabParent: 0
 --- !u!114 &744496611 stripped
 MonoBehaviour:
