@@ -54,7 +54,7 @@ namespace Cobble.SpyHunter.Player {
             _extraLives = Mathf.Clamp(_extraLives + amount, 0, MaxLives);
         }
 
-        public void RemoveLife(int amount = 1) {
+        public void RemoveLives(int amount = 1) {
             if (LeadInCount <= 0)
                 _extraLives = Mathf.Clamp(_extraLives - amount, 0, MaxLives);
         }

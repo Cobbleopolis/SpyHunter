@@ -36,6 +36,7 @@ namespace Cobble.SpyHunter.Ui {
                 yield return new WaitForSeconds(_flashTime);
             }
 
+            _scoreText.enabled = true;
             _flashingCoroutine = null;
         }
     }

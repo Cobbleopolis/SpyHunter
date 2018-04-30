@@ -28,7 +28,7 @@ namespace Cobble.SpyHunter.Entity {
 
         private IEnumerator DespawnTimer() {
             yield return new WaitForSeconds(MaxOffScreenTime);
-            Destroy(gameObject);
+            Destroy(_gameObjectToDestroy);
         }
     }
 }

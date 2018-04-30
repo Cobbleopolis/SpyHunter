@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 23197853889429934}
   - component: {fileID: 65177391580877818}
   - component: {fileID: 114658212024383928}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Car Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 114835878171467956}
   - component: {fileID: 114450166188956554}
   - component: {fileID: 114881401711446182}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Hostile Car
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -159,6 +159,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsAiActive: 0
+  IsHostile: 1
+  PointValue: 100
+  ScoreDelayTime: 5
   _navMeshAgent: {fileID: 195581345371999464}
   _rigidbody: {fileID: 54899883108260336}
 --- !u!114 &114658212024383928
@@ -172,7 +175,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2262c5e814af4895bce810048c4870f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxOffScreenTime: 1
+  MaxOffScreenTime: 2.5
   _gameObjectToDestroy: {fileID: 1485247865382840}
 --- !u!114 &114835878171467956
 MonoBehaviour:

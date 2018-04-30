@@ -23,6 +23,8 @@ namespace Cobble.SpyHunter.Player {
 
         public TrailRenderer AccelerationTrail;
 
+        public bool IsAccelerating;
+
         [SerializeField] private Rigidbody _rigidbody;
 
         [SerializeField] private LifeHandler _lifeHandler;
@@ -58,7 +60,8 @@ namespace Cobble.SpyHunter.Player {
             if (Math.Abs(input.x) > float.Epsilon && MovementSettings.CurrentTargetSpeed > 1f)
                 _rigidbody.MovePosition(_rigidbody.position +
                                         transform.right * input.x * MovementSettings.HorizontalSpeed);
-            if (input.y > float.Epsilon)
+            IsAccelerating = input.y > float.Epsilon;
+            if (IsAccelerating)
                 _rigidbody.AddForce(transform.forward * input.y * MovementSettings.AccelerationSpeed, ForceMode.Acceleration);
             if (AccelerationTrail)
                 AccelerationTrail.enabled = input.y > float.Epsilon &&

@@ -198,6 +198,7 @@ MonoBehaviour:
     MaxSpeed: 25
     CurrentTargetSpeed: 0
   AccelerationTrail: {fileID: 1924751535}
+  IsAccelerating: 0
   _rigidbody: {fileID: 31250548}
   _lifeHandler: {fileID: 31250552}
 --- !u!54 &31250548 stripped
@@ -239,8 +240,8 @@ NavMeshAgent:
   m_Enabled: 0
   m_AgentTypeID: 0
   m_Radius: 0.1
-  m_Speed: 30
-  m_Acceleration: 50
+  m_Speed: 25
+  m_Acceleration: 20
   avoidancePriority: 50
   m_AngularSpeed: 120
   m_StoppingDistance: 5
@@ -249,7 +250,7 @@ NavMeshAgent:
   m_AutoRepath: 1
   m_Height: 1.5
   m_BaseOffset: 1
-  m_WalkableMask: 4294967295
+  m_WalkableMask: 24
   m_ObstacleAvoidanceType: 4
 --- !u!114 &31250552
 MonoBehaviour:
@@ -303,6 +304,28 @@ MonoBehaviour:
   MinTimerDelay: 5
   MaxTimerDelay: 15
   _carController: {fileID: 31250547}
+--- !u!114 &31250555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 31250546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f6b7ea6f233499fa65fd53ff85dad0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  VehicleLayerMaskName: Vehicles
+  PlayerLayerMaskName: Player
+  ImpulseThreshold: 5
+  DotProductThreshold: 0.75
+  DeathDuration: 5
+  FlashRate: 0.25
+  _rigidbody: {fileID: 31250548}
+  _carController: {fileID: 31250547}
+  _lifeHandler: {fileID: 31250552}
+  _meshRenderer: {fileID: 537372847}
+  _trailRenderer: {fileID: 1924751535}
 --- !u!1001 &105816776
 Prefab:
   m_ObjectHideFlags: 0
@@ -368,7 +391,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 107027823}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Bullet Spawn 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -396,7 +419,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 254180276}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Oil Spawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -961,6 +984,11 @@ Mesh:
   m_BakedConvexCollisionMesh: 
   m_BakedTriangleCollisionMesh: 
   m_MeshOptimized: 0
+--- !u!23 &537372847 stripped
+MeshRenderer:
+  m_PrefabParentObject: {fileID: 23395282694204094, guid: 66ee979ba19df5b4189cd1870c3a1583,
+    type: 2}
+  m_PrefabInternal: {fileID: 1490516320}
 --- !u!43 &606181023
 Mesh:
   m_ObjectHideFlags: 0
@@ -1102,7 +1130,7 @@ GameObject:
   - component: {fileID: 655775200}
   - component: {fileID: 655775199}
   - component: {fileID: 655775197}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Despawn Area Front
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1255,7 +1283,7 @@ GameObject:
   - component: {fileID: 675564601}
   - component: {fileID: 675564600}
   - component: {fileID: 675564604}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -2457,7 +2485,7 @@ GameObject:
   - component: {fileID: 1162169089}
   - component: {fileID: 1162169088}
   - component: {fileID: 1162169086}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Spawn Area Back
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2526,7 +2554,7 @@ GameObject:
   - component: {fileID: 1196869578}
   - component: {fileID: 1196869577}
   - component: {fileID: 1196869576}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Despawn Area Back
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2896,6 +2924,14 @@ Prefab:
         type: 2}
       propertyPath: m_Mass
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1428408881700904, guid: 66ee979ba19df5b4189cd1870c3a1583, type: 2}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1800455818786846, guid: 66ee979ba19df5b4189cd1870c3a1583, type: 2}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
@@ -3466,7 +3502,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1750692913}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Bullet Spawn 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3627,7 +3663,7 @@ GameObject:
   - component: {fileID: 1829523407}
   - component: {fileID: 1829523406}
   - component: {fileID: 1829523405}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Spawn Area Front
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3765,7 +3801,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1924751534}
   - component: {fileID: 1924751535}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Trail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
